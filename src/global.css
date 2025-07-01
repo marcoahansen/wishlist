@@ -20,7 +20,7 @@ img {
   height: auto;
 }
 
-button, input {
+button,
+input {
   font-family: inherit;
 }
-
