@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import { CardGrid } from "./components/CardGrid/CardGrid";
 import { Footer } from "./components/Footer/Footer";
@@ -22,6 +22,25 @@ function App() {
       urlImage: "",
     });
   };
+
+  useEffect(() => {
+    const savedWishs = localStorage.getItem("userWishs");
+    console.log(savedWishs);
+    if (savedWishs) {
+      try {
+        const parsedWishs = JSON.parse(savedWishs);
+        console.log(parsedWishs);
+        setWishs(parsedWishs);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("userWishs", JSON.stringify(wishs));
+  }, [wishs]);
+
   return (
     <div className={styles.app}>
       <Header />
