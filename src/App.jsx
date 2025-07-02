@@ -34,24 +34,33 @@ function App() {
       <Header />
       <main className={styles.main}>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="urlImage"
-            value={form.urlImage}
-            onChange={handleChange}
-          />
+          <div>
+            <label htmlFor="name">Desejo</label>
+            <input
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="description">Descrição</label>
+            <input
+              type="text"
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="">URL Imagem</label>
+            <input
+              type="text"
+              name="urlImage"
+              value={form.urlImage}
+              onChange={handleChange}
+            />
+          </div>
           <button type="submit">Adicionar</button>
         </form>
         <CardGrid wishs={wishs} />
