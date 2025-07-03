@@ -7,6 +7,7 @@ import { AddItemForm } from "./components/AddItemForm/AddItemForm";
 
 function App() {
   const [wishs, setWishs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -29,17 +30,25 @@ function App() {
     if (savedWishs) {
       try {
         const parsedWishs = JSON.parse(savedWishs);
-        console.log(parsedWishs);
+        console.log("parsed: ", parsedWishs);
         setWishs(parsedWishs);
       } catch (error) {
         console.error(error);
       }
     }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("userWishs", JSON.stringify(wishs));
+    if (!loading) {
+      localStorage.setItem("userWishs", JSON.stringify(wishs));
+    }
   }, [wishs]);
+
+  const handleDelete = (indexToDelete) => {
+    const updatedWishs = wishs.filter((_, index) => index !== indexToDelete);
+    setWishs(updatedWishs);
+  };
 
   return (
     <div className={styles.app}>
@@ -50,7 +59,7 @@ function App() {
           form={form}
           setForm={setForm}
         />
-        <CardGrid wishs={wishs} />
+        <CardGrid wishs={wishs} handleDelete={handleDelete} />
       </main>
       <Footer />
     </div>
