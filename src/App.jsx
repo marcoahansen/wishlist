@@ -12,6 +12,7 @@ function App() {
     name: "",
     description: "",
     urlImage: "",
+    date: "",
   });
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ function App() {
       name: "",
       description: "",
       urlImage: "",
+      date: "",
     });
   };
 

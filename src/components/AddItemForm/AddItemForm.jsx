@@ -32,11 +32,21 @@ export const AddItemForm = ({ handleSubmit, form, setForm }) => {
           />
         </div>
         <div className={styles.inputContainer}>
-          <label htmlFor="">URL Imagem</label>
+          <label htmlFor="urlImage">URL Imagem</label>
           <input
             type="text"
             name="urlImage"
             value={form.urlImage}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <label htmlFor="date">Data</label>
+          <input
+            type="date"
+            name="date"
+            value={form.date}
             onChange={handleChange}
             required
           />

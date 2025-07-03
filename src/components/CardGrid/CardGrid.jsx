@@ -10,6 +10,7 @@ export const CardGrid = ({ wishs, handleDelete }) => {
           name={wish.name}
           description={wish.description}
           image={wish.urlImage}
+          date={wish.date}
           onDelete={() => handleDelete(index)}
         />
       ))}
