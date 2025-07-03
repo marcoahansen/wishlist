@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./App.module.css";
 import { CardGrid } from "./components/CardGrid/CardGrid";
 import { Footer } from "./components/Footer/Footer";
@@ -47,10 +47,13 @@ function App() {
     }
   }, [wishs]);
 
-  const handleDelete = (indexToDelete) => {
-    const updatedWishs = wishs.filter((_, index) => index !== indexToDelete);
-    setWishs(updatedWishs);
-  };
+  const handleDelete = useCallback(
+    (indexToDelete) => {
+      const updatedWishs = wishs.filter((_, index) => index !== indexToDelete);
+      setWishs(updatedWishs);
+    },
+    [wishs]
+  );
 
   return (
     <div className={styles.app}>
