@@ -30,12 +30,14 @@ export const Header = ({ onSearch, onClear }) => {
               onChange={handleChange}
               className={styles.input}
             />
-            <button type="submit" className={styles.button}>
-              Pesquisar
-            </button>
-            <button type="button" onClick={onClear} className={styles.clear}>
-              Limpar
-            </button>
+            <div className={styles.actions}>
+              <button type="submit" className={styles.button}>
+                Pesquisar
+              </button>
+              <button type="button" onClick={onClear} className={styles.clear}>
+                Limpar
+              </button>
+            </div>
           </div>
         </form>
       </div>
