@@ -11,6 +11,7 @@ function App({ search }) {
     description: "",
     urlImage: "",
     date: "",
+    id: "",
   });
 
   const filteredWishs = useMemo(() => {
@@ -35,6 +36,7 @@ function App({ search }) {
       description: "",
       urlImage: "",
       date: "",
+      id: "",
     });
   };
 
