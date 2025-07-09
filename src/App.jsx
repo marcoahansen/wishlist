@@ -78,7 +78,7 @@ function App() {
   );
 
   return (
-    <div className={styles.app}>
+    <>
       <Header onSearch={onSearch} onClear={onClear} />
       <main className={styles.main}>
         <AddItemForm
@@ -92,8 +92,7 @@ function App() {
           search={search}
         />
       </main>
-      <Footer />
-    </div>
+    </>
   );
 }
 
