@@ -1,14 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import styles from "./App.module.css";
 import { CardGrid } from "./components/CardGrid/CardGrid";
-import { Footer } from "./components/Footer/Footer";
-import { Header } from "./components/Header/Header";
 import { AddItemForm } from "./components/AddItemForm/AddItemForm";
 
-function App() {
+function App({ search }) {
   const [wishs, setWishs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -28,13 +25,6 @@ function App() {
       );
     });
   }, [search, wishs]);
-
-  const onSearch = useCallback((searchValue) => {
-    setSearch(searchValue);
-  });
-  const onClear = useCallback(() => {
-    setSearch("");
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,7 +69,6 @@ function App() {
 
   return (
     <>
-      <Header onSearch={onSearch} onClear={onClear} />
       <main className={styles.main}>
         <AddItemForm
           handleSubmit={handleSubmit}
