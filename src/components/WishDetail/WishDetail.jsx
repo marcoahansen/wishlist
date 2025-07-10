@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router";
 import { useWishs } from "../../hooks/useWishs";
 import { useEffect, useState } from "react";
+import { formatDate } from "../../utils/formatDate";
 
 export const WishDetail = () => {
   const { id } = useParams();
@@ -17,14 +18,20 @@ export const WishDetail = () => {
     setLoading(false);
   }, [wishs, id]);
 
+  const handleEditToggle = () => {
+    console.log("clicou");
+  };
+
   if (loading) return <h1>Carregando...</h1>;
 
   return (
     <div>
       <button onClick={() => navigate(-1)}>⬅️ Voltar</button>
       <h1>Detalhes do desejo</h1>
+      <button onClick={handleEditToggle}>✏️ Editar</button>
       <p>{wishDetail.name}</p>
       <p>{wishDetail.description}</p>
+      <p>{formatDate(wishDetail.date)}</p>
       <img width={200} src={wishDetail.urlImage} alt={wishDetail.name} />
     </div>
   );
