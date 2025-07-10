@@ -3,16 +3,18 @@ import styles from "./App.module.css";
 import { CardGrid } from "./components/CardGrid/CardGrid";
 import { AddItemForm } from "./components/AddItemForm/AddItemForm";
 
+const DEFAULT_FORM = {
+  name: "",
+  description: "",
+  urlImage: "",
+  date: "",
+  id: "",
+};
+
 function App({ search }) {
   const [wishs, setWishs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [form, setForm] = useState({
-    name: "",
-    description: "",
-    urlImage: "",
-    date: "",
-    id: "",
-  });
+  const [form, setForm] = useState(DEFAULT_FORM);
 
   const filteredWishs = useMemo(() => {
     if (!search.trim()) {
@@ -31,14 +33,16 @@ function App({ search }) {
     e.preventDefault();
     const updatedWishs = [...wishs, form];
     setWishs(updatedWishs);
-    setForm({
-      name: "",
-      description: "",
-      urlImage: "",
-      date: "",
-      id: "",
-    });
+    setForm(DEFAULT_FORM);
   };
+
+  const handleDelete = useCallback(
+    (indexToDelete) => {
+      const updatedWishs = wishs.filter((_, index) => index !== indexToDelete);
+      setWishs(updatedWishs);
+    },
+    [wishs]
+  );
 
   useEffect(() => {
     const savedWishs = localStorage.getItem("userWishs");
@@ -60,14 +64,6 @@ function App({ search }) {
       localStorage.setItem("userWishs", JSON.stringify(wishs));
     }
   }, [wishs]);
-
-  const handleDelete = useCallback(
-    (indexToDelete) => {
-      const updatedWishs = wishs.filter((_, index) => index !== indexToDelete);
-      setWishs(updatedWishs);
-    },
-    [wishs]
-  );
 
   return (
     <>

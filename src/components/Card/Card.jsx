@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router";
 import styles from "./Card.module.css";
 
-export const Card = ({ name, description, image, date, onDelete }) => {
+export const Card = ({ name, description, image, date, id, onDelete }) => {
   const [ano, mes, dia] = date ? date.split("-") : "";
   const convertedDate = new Date(ano, mes - 1, dia);
   const formatedDate = isNaN(convertedDate)
     ? ""
     : Intl.DateTimeFormat("pt-Br").format(convertedDate);
 
+  const navigate = useNavigate();
   return (
     <div className={styles.card}>
       <div className={styles.imgContainer}>
@@ -19,6 +21,7 @@ export const Card = ({ name, description, image, date, onDelete }) => {
         <button className={styles.delete} onClick={onDelete}>
           🗑️
         </button>
+        <button onClick={() => navigate(`wish/${id}`)}>Detalhes</button>
       </div>
     </div>
   );
