@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import styles from "./Header.module.css";
+import react from "../../assets/react.svg";
 
 export const Header = ({ onSearch, onClear }) => {
   const [searchValue, setSearchValue] = useState("");
@@ -21,7 +22,10 @@ export const Header = ({ onSearch, onClear }) => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Lista de Desejos</h1>
+        <div className={styles.titleCtn}>
+          <img src={react} alt="logo react" />
+          <h1 className={styles.title}>Lista de Desejos</h1>
+        </div>
         <form className={styles.searchForm} onSubmit={handleSubmit}>
           <div className={styles.searchGroup}>
             <input
