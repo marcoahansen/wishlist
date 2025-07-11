@@ -2,18 +2,10 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import styles from "./App.module.css";
 import { CardGrid } from "./components/CardGrid/CardGrid";
 import { AddItemForm } from "./components/AddItemForm/AddItemForm";
-import { useWishs } from "./hooks/useWishs";
-
-const DEFAULT_FORM = {
-  name: "",
-  description: "",
-  urlImage: "",
-  date: "",
-};
+import { DEFAULT_FORM, useWishs } from "./hooks/useWishs";
 
 function App({ search }) {
-  const { wishs, setWishs } = useWishs();
-  const [form, setForm] = useState(DEFAULT_FORM);
+  const { wishs, setWishs, form, setForm } = useWishs();
 
   const filteredWishs = useMemo(() => {
     if (!search.trim()) {

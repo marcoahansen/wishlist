@@ -44,6 +44,33 @@
 
 .content {
   padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  min-height: 8rem;
+}
+
+.btnContainer {
+  display: flex;
+}
+
+.detalhes {
+  place-self: flex-end;
+  background-color: rgba(13, 69, 136, 0.95);
+  color: #cdd9e6;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  place-self: flex-end;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.detalhes:hover {
+  background-color: rgba(27, 96, 181, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.4);
 }
 
 .name {

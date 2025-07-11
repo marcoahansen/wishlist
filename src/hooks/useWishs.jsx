@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const DEFAULT_FORM = {
+export const DEFAULT_FORM = {
   name: "",
   description: "",
   urlImage: "",
