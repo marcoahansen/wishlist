@@ -6,13 +6,22 @@ import { AddItemForm } from "../AddItemForm/AddItemForm";
 
 export const WishDetail = () => {
   const { id } = useParams();
-  const { wishs, loading, setLoading, form, setForm } = useWishs();
+  const { wishs, loading, setLoading, form, setForm, setWishs } = useWishs();
   const [wishDetail, setWishDetail] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
   const handleEditToggle = () => {
     setIsEditing((prev) => !prev);
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const updatedWish = { ...form, id: wishDetail.id };
+    setWishs((prev) =>
+      prev.map((wish) => (wish.id === updatedWish.id ? updatedWish : wish))
+    );
+    setIsEditing(false);
   };
 
   useEffect(() => {
@@ -29,11 +38,6 @@ export const WishDetail = () => {
     }
     setLoading(false);
   }, [wishs, id]);
-
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    console.log(form);
-  };
 
   if (loading) return <h1>Carregando...</h1>;
 
