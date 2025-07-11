@@ -3,6 +3,7 @@ import { useWishs } from "../../hooks/useWishs";
 import { useEffect, useState } from "react";
 import { formatDate } from "../../utils/formatDate";
 import { AddItemForm } from "../AddItemForm/AddItemForm";
+import styles from "./WishDetail.module.css";
 
 export const WishDetail = () => {
   const { id } = useParams();
@@ -42,26 +43,40 @@ export const WishDetail = () => {
   if (loading) return <h1>Carregando...</h1>;
 
   return (
-    <div>
-      <button onClick={() => navigate(-1)}>⬅️ Voltar</button>
-      <h1>Detalhes do desejo</h1>
-      <button onClick={handleEditToggle}>✏️ Editar</button>
-      {isEditing ? (
-        <>
-          <AddItemForm
-            handleSubmit={handleUpdate}
-            setForm={setForm}
-            form={form}
-          />
-        </>
-      ) : (
-        <>
-          <p>{wishDetail.name}</p>
-          <p>{wishDetail.description}</p>
-          <p>{formatDate(wishDetail.date)}</p>
-          <img width={200} src={wishDetail.urlImage} alt={wishDetail.name} />
-        </>
-      )}
-    </div>
+    <>
+      <div className={styles.container}>
+        <div className={styles.button}>
+          <button className={styles.btn} onClick={() => navigate(-1)}>
+            ⬅️ Voltar
+          </button>
+          <button className={styles.btn} onClick={handleEditToggle}>
+            {isEditing ? "❌ Cancelar" : "✏️ Editar"}
+          </button>
+        </div>
+        {isEditing ? (
+          <div className={styles.content}>
+            <AddItemForm
+              handleSubmit={handleUpdate}
+              setForm={setForm}
+              form={form}
+            />
+          </div>
+        ) : (
+          <div className={styles.content}>
+            <h1 className={styles.title}>Detalhes do desejo com o id: {id}</h1>
+            <div className={styles.imgContainer}>
+              <img
+                className={styles.img}
+                src={wishDetail.urlImage}
+                alt={wishDetail.name}
+              />
+            </div>
+            <p className={styles.name}>{wishDetail.name}</p>
+            <p className={styles.desc}>{wishDetail.description}</p>
+            <p className={styles.date}>{formatDate(wishDetail.date)}</p>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
